@@ -1,142 +1,115 @@
-# 🤖 DIO Agent
+# GuardAI: Especialização do DIO Agent para Cibersegurança e AppSec
+*Projeto prático desenvolvido para o Bootcamp Santander Cibersegurança — DIO*
 
-> Seu mentor com Inteligência Artificial para aprender mais e melhor na [DIO](https://dio.me).
+Este repositório documenta a evolução do **DIO Agent** na persona especializada **GuardAI**: um mentor de cibersegurança e Application Security (AppSec) capaz de auditar códigos, avaliar riscos na Tríade CIA e orientar correções de forma investigativa, sem entregar respostas cegas para copiar e colar.
 
-O **DIO Agent** é um agente de IA que acompanha você na sua jornada de estudos. Ele conhece as experiências da DIO (Bootcamps, Formações, Cursos, Desafios e muito mais) e ajuda você a estudar, praticar e planejar a sua carreira.
-
-Você não precisa saber programar nem instalar nada complicado. Em **3 passos**, o seu mentor está pronto para usar.
-
----
-
-## ✨ Três palavras para começar
-
-- 🧠 **Agente de IA:** um chatbot responde perguntas. Um *agente* vai além: lê, planeja e executa passos para ajudar você a alcançar um objetivo. É a diferença entre alguém que explica o caminho e alguém que caminha junto com você.
-- 🖥️ **Harness:** é o programa onde o agente roda. O agente é o mentor, e o harness é a sala onde vocês se encontram. O mesmo mentor atende em salas diferentes, por isso o DIO Agent funciona em vários harnesses.
-- 🧩 **Skill:** é uma habilidade do agente, descrita em um guia passo a passo. Você não precisa chamar a skill: o agente percebe o que você precisa e usa a certa sozinho.
-
-Esses e outros termos estão no [Glossário](docs/glossary.md).
+Diferente de um modelo de linguagem genérico que cospe blocos de código sem critério, o GuardAI foi arquitetado com base em arquivos de instrução e governança (`AGENTS.md`, `persona.md`, `knowledge/` e `skills/`). Nenhum peso de rede neural foi treinado: o agente aprendeu novos comportamentos exclusivamente por meio de contexto estruturado.
 
 ---
 
-## 🚀 Comece em 3 passos
+## 1. Por que a Especialização foi Criada
 
-### 1️⃣ Instale um harness
+Em ambientes corporativos reais, a pessoa analista de segurança não chega dizendo "troque a linha 10 por isso". Ela precisa entender:
+- Onde a aplicação roda (serviço interno ou exposto na borda da internet)?
+- Qual o tipo e a criticidade dos dados manipulados?
+- Qual o impacto real no negócio caso a falha seja explorada?
 
-Recomendamos o **Google Antigravity**, que tem limites de uso generosos para quem está começando. Mas qualquer harness da lista funciona: escolha um e siga a instalação da documentação oficial dele.
-
-| Harness | Documentação oficial |
-|---------|----------------------|
-| Google Antigravity (recomendado) | https://antigravity.google/docs |
-| Claude Code | https://code.claude.com/docs |
-| Codex | https://developers.openai.com/codex |
-| OpenCode | https://opencode.ai/docs |
-| Hermes | https://hermes-agent.nousresearch.com/docs |
-
-### 2️⃣ Baixe o DIO Agent e abra no harness
-
-Baixe este repositório do jeito mais simples para você:
-
-- **Com Git:** no terminal, rode `git clone https://github.com/digitalinnovationone/dio-agent.git`
-- **Sem Git:** no topo desta página, clique no botão verde **Code**, depois em **Download ZIP**, e extraia a pasta.
-
-Depois, abra no harness a pasta do projeto, a que tem o arquivo `AGENTS.md` (pelo Git, ela se chama `dio-agent`; pelo .zip, `dio-agent-main`). O harness lê esse arquivo sozinho, e o agente já sabe quem é: o seu mentor de estudos da DIO.
-
-### 3️⃣ Converse
-
-Fale naturalmente, com as suas palavras. Nas primeiras vezes, vale usar um dos [modelos de prompt](#-modelos-de-prompt) abaixo: quanto mais contexto você dá, melhor o agente ajuda.
+O objetivo desta especialização foi conferir ao agente a maturidade de um profissional sênior de segurança defensiva: ele faz perguntas de contexto antes de sugerir comandos, categoriza a ameaça por taxonomias padronizadas (CWE e MITRE ATT&CK) e ensina o desenvolvedor a corrigir a causa raiz.
 
 ---
 
-## 🧩 As skills do agente
+## 2. Mapa de Arquivos Criados e Alterados
 
-| Skill | Para que serve | Experimente pedir |
-|-------|----------------|-------------------|
-| [Plano de estudos](skills/study-plan/SKILL.md) | Organiza o que estudar, em que ordem e em quanto tempo | "Quero concluir este Bootcamp em 2 meses, me ajuda?" |
-| [Destravar desafio](skills/unblock-challenge/SKILL.md) | Conduz você até a solução de um desafio, sem dar a resposta pronta | "Travei nesse desafio, me ajuda?" |
-| [Explicar conceito](skills/explain-concept/SKILL.md) | Explica conceitos de forma simples, com analogias e exemplos | "Não entendi o que é uma API." |
-| [Pesquisa na web](skills/web-search/SKILL.md) | Responde dúvidas atuais (versões, lançamentos, mercado) com fontes citadas | "Qual a versão estável do Node hoje?" |
-| [Revisão de portfólio](skills/portfolio-review/SKILL.md) | Dá feedback sobre o seu portfólio e GitHub antes de buscar vagas | "O que falta no meu GitHub para uma vaga júnior?" |
-| [Caminho AI Builder](skills/ai-builder-path/SKILL.md) | Ajuda você a escolher o próximo passo na Carreira AI Builder | "Qual Formação AI Builder combina comigo?" |
-
-A pesquisa na web usa a busca do seu harness. Se ele não tiver busca própria, veja [como conectar o You.com](docs/youcom-mcp.md), que tem uma opção gratuita.
-
----
-
-## 📝 Modelos de prompt
-
-Copie, preencha o que está entre colchetes e envie. Não precisa de formato perfeito: o agente pede mais detalhes se precisar.
-
-**🗺️ Plano de estudos**
-
-```
-Quero montar um plano de estudos.
-- Meu objetivo: [ex: ser dev back-end, concluir um Bootcamp]
-- O que quero fazer na DIO: [link ou nome do Bootcamp, Formação, Aceleração ou Carreira]
-- O que já tenho: [um plano de ação ou de estudos, se tiver]
-- Meu nível hoje: [iniciante, intermediário, avançado]
-- Tempo disponível: [ex: 1 hora por dia, de segunda a sexta]
-```
-
-**🔓 Destravar desafio**
-
-```
-Estou travado em um Desafio de [Código, Projeto ou Criativo] da DIO.
-- O que o desafio pede: [cole o enunciado ou, no Desafio de Projeto, o link do repositório do desafio]
-- Onde eu travei: [explique o ponto da dificuldade]
-- Meu código ou repositório: [cole o código ou o link, se tiver]
-Me ajuda a destravar sem dar a resposta pronta.
-```
-
-**💡 Explicar conceito**
-
-```
-Me explica o conceito de [ex: API, laço de repetição, herança].
-- Meu nível: [nunca vi, já ouvi falar, quero aprofundar]
-```
-
-**🧭 Caminho AI Builder**
-
-```
-Quero escolher meu próximo passo na Carreira AI Builder.
-- O que quero construir com IA: [ex: um produto para o meu negócio, um software, agentes que automatizam processos, ainda não sei]
-- Minha experiência com programação: [nenhuma, o básico, trabalho com desenvolvimento]
-- Meu objetivo: [ex: mudar de carreira, tirar uma ideia do papel]
-```
+| Arquivo | Tipo | Descrição / Papel no Agente |
+|---|---|---|
+| `AGENTS.md` | Alterado | Fonte única de verdade do agente; registra as novas bases de conhecimento e a tabela de skills. |
+| `agent/persona.md` | Alterado | Ajusta a identidade para o perfil de mentor AppSec, estabelecendo postura didática e investigativa. |
+| `agent/knowledge/security-basics.md` | Criado | Fundamentos de segurança: Vulnerabilidade vs Ameaça vs Risco, Tríade CIA, CWE e OWASP. |
+| `agent/knowledge/reverse-engineering-appsec.md` | Criado | Conhecimento avançado sobre descompilação de código gerenciado (.NET/CIL), nativo e hardening. |
+| `skills/vulnerability-analysis/SKILL.md` | Criado | Roteiro do agente para conduzir auditorias de código e matriz de severidade. |
+| `skills/vulnerability-analysis/README.md` | Criado | Documentação humana explicando o propósito e quando a skill entra em ação. |
+| `skills/reverse-engineering-triage/SKILL.md` | Criado | Roteiro para triagem e auditoria de binários compilados (.exe/.dll) via descompilação estática. |
+| `skills/reverse-engineering-triage/README.md` | Criado | Documentação humana sobre a skill de engenharia reversa para segurança. |
+| `labs/01-sql-injection/` | Criado | Laboratório prático de SQL Injection (`app.py`, `app_fixed.py` e testes automatizados). |
+| `labs/02-reverse-engineering/` | Criado | Laboratório de engenharia reversa com código C# (`InsecureLicenseManager.cs`) e auditor estático. |
 
 ---
 
-## 🔄 Mantenha o DIO Agent atualizado
+## 3. Melhoria Escolhida: Triagem por Engenharia Reversa
 
-O DIO Agent evolui com o tempo. Se você usou Git, rode `git pull` no terminal, dentro da pasta (ou peça para o próprio agente rodar). Se baixou o .zip, baixe de novo.
+Além do escopo básico solicitado no desafio (análise de SQL Injection em código-fonte), foi adicionada uma segunda capacidade de alto valor técnico: **Engenharia Reversa para Segurança de Aplicações**.
 
----
-
-## 🗂️ Estrutura do repositório
-
-```
-dio-agent/
-├── README.md                Este guia
-├── AGENTS.md                Definição do agente (lida pelo harness)
-├── CLAUDE.md                Atalho para o Claude Code
-├── agent/
-│   ├── persona.md           A personalidade e o tom do agente
-│   └── knowledge/           O que o agente sabe sobre a DIO
-├── skills/                  Uma pasta por skill, cada uma com o seu SKILL.md
-└── docs/
-    ├── glossary.md          Glossário de termos
-    └── youcom-mcp.md        Como conectar a busca do You.com
-```
+Muitas vezes o time de segurança precisa auditar pacotes de terceiros, bibliotecas legadas ou executáveis compilados em que o código-fonte original não está acessível. A skill `reverse-engineering-triage` orienta o agente a:
+1. Identificar se o alvo é código gerenciado (.NET CIL / Java Bytecode) ou código nativo.
+2. Inspecionar strings e tabelas de importação (IAT) em busca de segredos em texto puro (`CWE-798`).
+3. Avaliar fluxos de validação lógica no cliente (`CWE-603`) e recomendar técnicas de hardening (ofuscação, assinaturas de código e validação centralizada em backend).
 
 ---
 
-## 🤝 Contribua
+## 4. Laboratórios Práticos Desenvolvidos
 
-Tem uma ideia de skill? Veja [como criar uma skill](skills/README.md) e abra um pull request.
+### Laboratório 1: Detecção e Mitigação de SQL Injection (`labs/01-sql-injection/`)
+Demonstração de uma rota de autenticação vulnerável a injeção SQL clássica (`CWE-89` / MITRE `T1190`):
+
+- **Código Vulnerável (`app.py`):** Concatenação direta de strings na query SQL.
+  ```python
+  query = f"SELECT usuario, perfil FROM usuarios WHERE usuario = '{usuario_input}' AND senha = '{senha_input}'"
+  ```
+- **Código Mitigado (`app_fixed.py`):** Utilização de consultas parametrizadas (*Prepared Statements*).
+  ```python
+  query = "SELECT usuario, perfil FROM usuarios WHERE usuario = ? AND senha = ?"
+  cursor.execute(query, (usuario_input, senha_input))
+  ```
+- **Evidência do Teste Automatizado (`test_sql_injection.py`):**
+  ```text
+  [CENARIO 1] Executando ataque contra o login vulneravel (app.py):
+  [DEBUG SQL GERADO]: SELECT usuario, perfil FROM usuarios WHERE usuario = 'admin' --' AND senha = '...'
+    [RESULTADO]: BRECHA CONFIRMADA! Autenticado como 'admin' sem senha correta!
+
+  [CENARIO 2] Executando o mesmo ataque contra o login seguro (app_fixed.py):
+  [DEBUG SQL SEGURO]: SELECT usuario, perfil FROM usuarios WHERE usuario = ? AND senha = ?
+    [RESULTADO]: PROTEGIDO! A consulta parametrizada tratou o payload como string literal.
+  ```
 
 ---
 
-## 💬 Sobre este projeto
+### Laboratório 2: Auditoria de Binário Compilado via Engenharia Reversa (`labs/02-reverse-engineering/`)
+Demonstração de como compiladores preservam constantes e metadados que revelam chaves estáticas:
 
-O DIO Agent foi criado para acompanhar você nos Bootcamps e Formações da DIO. A ideia é simples: aprender na era da IA fica mais fácil quando você tem um mentor disponível a qualquer hora.
+- **Código C# (`InsecureLicenseManager.cs`):** Validação de acesso baseada em constante estática.
+- **Auditoria de Descompilação (`audit_binary.py`):**
+  ```text
+  [*] Resultados da analise estatica de strings e metadados:
+    [ALERTA CWE-798] String sensivel em texto puro: 'return key == MASTER_SECRET_KEY;'
+  [!] DIAGNOSTICO DO GUARDAI:
+    - Vulnerabilidade: CWE-798 (Use of Hardcoded Credentials)
+    - Severidade: ALTA / CRITICA
+    - Mitigacao: Nunca gravar chaves em constantes de binarios. Utilizar tokens efemeros via KMS.
+  ```
 
-Bons estudos, e vem com a gente. 🚀
+---
+
+## 5. Comparativo: Chat Genérico vs. GuardAI Especializado
+
+| Cenário de Teste | Resposta de um Chatbot Genérico | Comportamento do GuardAI (com a Skill) |
+|---|---|---|
+| **Usuário envia código vulnerável** | Cospe imediatamente o código corrigido e manda copiar. | Pergunta onde o código roda e quais dados ele trafega antes de opinar. |
+| **Classificação de Risco** | "Isso é perigoso." | Mapeia o CWE-89, associa à técnica MITRE ATT&CK T1190 e analisa a Tríade CIA. |
+| **Condução Pedagógica** | Resolve o problema pelo usuário. | Explica o conceito de *Prepared Statements* e estimula o estudante a propor a correção. |
+
+---
+
+## 6. Como Executar o Agente no Hermes
+
+1. Instale o **Hermes** conforme a documentação oficial da DIO.
+2. Abra o terminal exatamente na pasta raiz deste repositório:
+   ```bash
+   cd dio-agent-guardai
+   ```
+3. Inicie o agente pelo terminal:
+   ```bash
+   hermes
+   ```
+4. Converse naturalmente:
+   > *"Olá! Tenho uma função de login em Python que recebe dados de um formulário e faz um SELECT no SQLite. Como posso saber se ela está segura?"*
+5. Observe o GuardAI aplicando a skill `vulnerability-analysis`, fazendo as perguntas de contexto antes de qualquer julgamento.
